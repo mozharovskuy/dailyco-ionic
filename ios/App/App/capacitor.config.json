@@ -9,5 +9,10 @@
 			"launchShowDuration": 0
 		}
 	},
-	"cordova": {}
+	"cordova": {},
+	"server": {
+		"hostname": "localhost:3000",
+		"iosScheme": "https",
+		"androidScheme": "https"
+	}
 }

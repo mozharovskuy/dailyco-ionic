@@ -4,8 +4,7 @@ import {Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import DailyIframe from '@daily-co/daily-js';
-
-import {Permissions, PermissionType} from '@capacitor/core';
+import {Camera} from '@capacitor/camera';
 
 @Component({
   selector: 'app-root',
@@ -35,9 +34,9 @@ export class AppComponent {
 
   public async joinCall(): Promise<void> {
     try {
-      const permissions = await Permissions.query({name: PermissionType.Camera});
+      const cameraPermissions = await Camera.checkPermissions();
 
-      console.log('Permissions: ' + permissions.state);
+      console.log('Permissions: ' + cameraPermissions);
     } catch (e) {
       console.error(e);
     }

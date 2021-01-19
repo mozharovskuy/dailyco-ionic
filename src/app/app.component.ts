@@ -4,7 +4,7 @@ import {Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import DailyIframe from '@daily-co/daily-js';
-import {Camera} from '@capacitor/camera';
+import {Camera, CameraResultType} from '@capacitor/camera';
 
 @Component({
   selector: 'app-root',
@@ -32,15 +32,17 @@ export class AppComponent {
     });
   }
 
-  public async joinCall(): Promise<void> {
+  public async openCamera(): Promise<void> {
     try {
-      const cameraPermissions = await Camera.checkPermissions();
+      const cameraPermissions = await Camera.getPhoto({resultType: CameraResultType.Base64});
 
-      console.log('Permissions: ' + cameraPermissions);
+      console.log('Permissions: ' + JSON.stringify(cameraPermissions));
     } catch (e) {
       console.error(e);
     }
+  }
 
+  public async joinCall(): Promise<void> {
     const call = await DailyIframe
         .wrap(this.videoFrame.nativeElement)
         .join({

@@ -1,3 +1,20 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+
+    <ion-header>
+        <ion-toolbar>
+            <ion-item>
+                <ion-input mode="ios" [(ngModel)]="meetLink"></ion-input>
+            </ion-item>
+            <ion-button (click)="joinCall()" expand="full">Join</ion-button>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+
+
+        <iframe #videoFrame
+                style="height: 100%; width: 100%"
+                allow="microphone; camera; autoplay; display-capture;"
+        ></iframe>
+    </ion-content>
 </ion-app>

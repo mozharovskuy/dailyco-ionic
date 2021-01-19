@@ -4,8 +4,7 @@ import {Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import DailyIframe from '@daily-co/daily-js';
-
-import {Permissions, PermissionType} from '@capacitor/core';
+import {Camera, CameraResultType, Permissions, PermissionType} from '@capacitor/core';
 
 @Component({
   selector: 'app-root',
@@ -31,6 +30,16 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  public async openCamera(): Promise<void> {
+    try {
+      const cameraPermissions = await Camera.getPhoto({resultType: CameraResultType.Base64});
+
+      console.log('Permissions: ' + JSON.stringify(cameraPermissions));
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   public async joinCall(): Promise<void> {

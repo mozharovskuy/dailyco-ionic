@@ -1,0 +1,7 @@
+{
+  "name": "ionic-dailyco",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
